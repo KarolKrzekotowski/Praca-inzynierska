@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_navigation"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/game_fragment"
+        android:name="com.example.pracainzynierska.Game_fragment"
+        android:label="Game_fragment" />
+    <fragment
+        android:id="@+id/guest_fragment"
+        android:name="com.example.pracainzynierska.Guest_fragment"
+        android:label="Guest_fragment" >
+        <action
+            android:id="@+id/action_guest_fragment_to_host_fragment"
+            app:destination="@id/host_fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/history_fragment"
+        android:name="com.example.pracainzynierska.History.History_fragment"
+        android:label="History_fragment" />
+    <fragment
+        android:id="@+id/host_fragment"
+        android:name="com.example.pracainzynierska.Host_fragment"
+        android:label="Host_fragment" >
+        <action
+            android:id="@+id/action_host_fragment_to_game_fragment"
+            app:destination="@id/game_fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.pracainzynierska.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_mainFragment_to_host_fragment"
+            app:destination="@id/host_fragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_history_fragment"
+            app:destination="@id/history_fragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_guest_fragment"
+            app:destination="@id/guest_fragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_friendsFragment"
+            app:destination="@id/friendsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/friendsFragment"
+        android:name="com.example.pracainzynierska.Friends.FriendsFragment"
+        android:label="FriendsFragment" />
+</navigation>
