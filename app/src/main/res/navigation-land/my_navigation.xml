@@ -1,30 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/my_navigation"
+    xmlns:tools="http://schemas.android.com/tools"
     app:startDestination="@id/mainFragment">
 
     <fragment
         android:id="@+id/game_fragment"
-        android:name="com.example.pracainzynierska.Game_fragment"
-        android:label="Game_fragment" />
+        android:name="com.example.pracainzynierska.GameFragment"
+        android:label="Game_fragment"
+        tools:layout="@layout/game_fragment"/>
     <fragment
         android:id="@+id/guest_fragment"
-        android:name="com.example.pracainzynierska.Guest_fragment"
-        android:label="Guest_fragment" >
+        android:name="com.example.pracainzynierska.GuestFragment"
+        android:label="Guest_fragment"
+        tools:layout="@layout/guest_fragment">
         <action
             android:id="@+id/action_guest_fragment_to_host_fragment"
-            app:destination="@id/host_fragment" />
+            app:destination="@id/hostfragment" />
     </fragment>
     <fragment
         android:id="@+id/history_fragment"
-        android:name="com.example.pracainzynierska.History.History_fragment"
-        android:label="History_fragment" />
+        android:name="com.example.pracainzynierska.History.HistoryFragment"
+        android:label="History_fragment"
+        tools:layout="@layout/history_fragment"/>
     <fragment
-        android:id="@+id/host_fragment"
-        android:name="com.example.pracainzynierska.Host_fragment"
-        android:label="Host_fragment" >
+        android:id="@+id/hostfragment"
+        android:name="com.example.pracainzynierska.HostFragment"
+        android:label="Host_fragment"
+        tools:layout="@layout/host_fragment">
         <action
             android:id="@+id/action_host_fragment_to_game_fragment"
             app:destination="@id/game_fragment" />
@@ -36,7 +40,7 @@
         tools:layout="@layout/fragment_main" >
         <action
             android:id="@+id/action_mainFragment_to_host_fragment"
-            app:destination="@id/host_fragment" />
+            app:destination="@id/hostfragment" />
         <action
             android:id="@+id/action_mainFragment_to_history_fragment"
             app:destination="@id/history_fragment" />
@@ -50,5 +54,6 @@
     <fragment
         android:id="@+id/friendsFragment"
         android:name="com.example.pracainzynierska.Friends.FriendsFragment"
-        android:label="FriendsFragment" />
+        android:label="FriendsFragment"
+        tools:layout="@layout/fragment_friends"/>
 </navigation>

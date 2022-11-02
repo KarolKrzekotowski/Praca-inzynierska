@@ -5,10 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.pracainzynierska.databinding.GuestFragmentBinding
 import com.example.pracainzynierska.databinding.HostFragmentBinding
 
-class Host_fragment:Fragment() {
+class HostFragment:Fragment() {
 
     private lateinit var binding: HostFragmentBinding
     override fun onCreate(savedInstanceState: Bundle?) {

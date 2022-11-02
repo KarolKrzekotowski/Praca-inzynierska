@@ -8,12 +8,18 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pracainzynierska.R
 import com.example.pracainzynierska.databinding.FriendsItemListBinding
+import com.firebase.ui.database.FirebaseRecyclerAdapter
+import com.firebase.ui.database.FirebaseRecyclerOptions
+import kotlinx.android.synthetic.main.friends_invitation_item.view.*
+import kotlinx.android.synthetic.main.friends_invitation_item.view.friendEmail
+import kotlinx.android.synthetic.main.friends_item_list.view.*
 
-class FriendsAdapter(): RecyclerView.Adapter<FriendsAdapter.ViewHolder>() {
+class FriendsAdapter(options: FirebaseRecyclerOptions<Friends>): FirebaseRecyclerAdapter<Friends,FriendsAdapter.ViewHolder>(options) {
     private lateinit var binding: FriendsItemListBinding
-    private var friendsList = mutableListOf<Friends>()
+
     inner class ViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
-        var email:TextView = itemView.findViewById(R.id.email)
+        var email:TextView = itemView.friendEmail
+        val deleteButton:Button=itemView.Delete
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -25,31 +31,14 @@ class FriendsAdapter(): RecyclerView.Adapter<FriendsAdapter.ViewHolder>() {
         return ViewHolder(binding.root)
     }
 
-    override fun getItemCount(): Int {
-        return friendsList.size
-    }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val friend = friendsList[position]
-        val email = holder.email
-        email.text = friend.email
-        val button:Button = binding.Delete
-        button.setOnClickListener {
-            TODO("remove from friends")
+
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int, model: Friends) {
+        holder.email.text = model.email
+        holder.deleteButton.setOnClickListener {
+            FriendsFragment.DeleteFromFriends(it, model)
         }
     }
-    fun getFriend(position: Int): Friends {
-        return friendsList[position]
-    }
 
-    fun deleteFriend(position: Int) {
-        friendsList.remove(getFriend(position))
-        notifyDataSetChanged()
-    }
-    fun setData(friends: MutableList<Friends>){
-        this.friendsList = friends
-//        this.agregationList = aggregated
-
-        notifyDataSetChanged()
-    }
 }

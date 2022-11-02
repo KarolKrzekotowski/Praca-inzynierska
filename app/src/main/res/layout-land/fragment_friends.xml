@@ -73,7 +73,7 @@
                 android:text="Podaj Email Znajomego" />
 
             <EditText
-                android:id="@+id/email"
+                android:id="@+id/emailEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"

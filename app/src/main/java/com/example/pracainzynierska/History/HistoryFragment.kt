@@ -12,7 +12,7 @@ import com.example.pracainzynierska.Data.HistoryDataViewModelFactory
 
 import com.example.pracainzynierska.databinding.HistoryFragmentBinding
 
-class History_fragment: Fragment() {
+class HistoryFragment: Fragment() {
 
     private lateinit var adapter: HistoryRecyclerAdapter
     private lateinit var historyDataViewModel:HistoryDataViewModel
