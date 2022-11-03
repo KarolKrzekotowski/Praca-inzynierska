@@ -12,12 +12,15 @@
         tools:layout="@layout/game_fragment"/>
     <fragment
         android:id="@+id/guest_fragment"
-        android:name="com.example.pracainzynierska.GuestFragment"
+        android:name="com.example.pracainzynierska.Guest.GuestFragment"
         android:label="Guest_fragment"
         tools:layout="@layout/guest_fragment">
         <action
-            android:id="@+id/action_guest_fragment_to_host_fragment"
-            app:destination="@id/hostfragment" />
+            android:id="@+id/action_guest_fragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_guest_fragment_to_waitingRoomForGuestsFragment"
+            app:destination="@id/waitingRoomForGuestsFragment" />
     </fragment>
     <fragment
         android:id="@+id/history_fragment"
@@ -26,7 +29,7 @@
         tools:layout="@layout/history_fragment"/>
     <fragment
         android:id="@+id/hostfragment"
-        android:name="com.example.pracainzynierska.HostFragment"
+        android:name="com.example.pracainzynierska.Host.HostFragment"
         android:label="Host_fragment"
         tools:layout="@layout/host_fragment">
         <action
@@ -56,4 +59,16 @@
         android:name="com.example.pracainzynierska.Friends.FriendsFragment"
         android:label="FriendsFragment"
         tools:layout="@layout/fragment_friends"/>
+    <fragment
+        android:id="@+id/waitingRoomForGuestsFragment"
+        android:name="com.example.pracainzynierska.WaitingRoom.WaitingRoomForGuestsFragment"
+        android:label="fragment_waiting_room_for_guests"
+        tools:layout="@layout/fragment_waiting_room_for_guests" >
+        <action
+            android:id="@+id/action_waitingRoomForGuestsFragment_to_game_fragment"
+            app:destination="@id/game_fragment" />
+        <action
+            android:id="@+id/action_waitingRoomForGuestsFragment_to_guest_fragment"
+            app:destination="@id/guest_fragment" />
+    </fragment>
 </navigation>

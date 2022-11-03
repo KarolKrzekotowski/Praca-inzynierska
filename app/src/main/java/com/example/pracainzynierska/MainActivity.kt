@@ -27,13 +27,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         supportActionBar?.hide()
-//        val windowInsetsController =
-//            ViewCompat.getWindowInsetsController(window.decorView) ?: return
-//        // Configure the behavior of the hidden system bars
-//        windowInsetsController.systemBarsBehavior =
-//            WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
-//        // Hide both the status bar and the navigation bar
-//        windowInsetsController.hide(WindowInsetsCompat.Type.systemBars())
         WindowInsetsControllerCompat.BEHAVIOR_SHOW_BARS_BY_SWIPE
 
         setContentView(R.layout.activity_main)
