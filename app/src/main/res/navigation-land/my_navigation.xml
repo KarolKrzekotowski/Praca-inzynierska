@@ -35,6 +35,9 @@
         <action
             android:id="@+id/action_host_fragment_to_game_fragment"
             app:destination="@id/game_fragment" />
+        <action
+            android:id="@+id/action_hostfragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
     </fragment>
     <fragment
         android:id="@+id/mainFragment"

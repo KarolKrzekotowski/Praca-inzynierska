@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.main.join_the_game_item.view.*
 class InvitationToGameAdapter(options: FirebaseRecyclerOptions<Friends>) : FirebaseRecyclerAdapter<Friends, InvitationToGameAdapter.ViewHolder>(options) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType:Int): InvitationToGameAdapter.ViewHolder {
-        return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.friends_invitation_item,parent,false))
+        return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.join_the_game_item,parent,false))
     }
 
     inner class ViewHolder(invitationView: View) : RecyclerView.ViewHolder(invitationView) {
@@ -35,13 +35,5 @@ class InvitationToGameAdapter(options: FirebaseRecyclerOptions<Friends>) : Fireb
             GuestFragment.joinTheGame(it,model)
         }
     }
-//        holder.friend.text = model.email
-//        holder.acceptButton.setOnClickListener {
-//            FriendsFragment.AddToFriends(it,model)
-//
-//        }
-//        holder.declineButton.setOnClickListener {
-//            FriendsFragment.DeclineInvitation(it,model)
-//        }
-//    }
+
 }

@@ -60,6 +60,10 @@ class GuestFragment:Fragment() {
         adapter.stopListening()
     }
 
+    fun moveToWaitingRoom(){
+
+    }
+
 
     companion object{
         private lateinit var instance: GuestFragment
@@ -69,6 +73,7 @@ class GuestFragment:Fragment() {
             ownerEmail = newModel
             myRef.child(invites).child(newModel).removeValue()
             myRef.parent?.child(newModel)?.child(game)?.child(waiting)?.child(currentUser)?.child(email)?.setValue(currentUser)
+            Navigation.findNavController(instance.binding.root).navigate(R.id.action_guest_fragment_to_waitingRoomForGuestsFragment)
         }
     }
 }

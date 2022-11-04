@@ -1,6 +1,7 @@
 package com.example.pracainzynierska.WaitingRoom
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,11 @@ import com.example.pracainzynierska.Friends.Friends
 import com.example.pracainzynierska.Guest.GuestFragment
 import com.example.pracainzynierska.databinding.FragmentWaitingRoomForGuestsBinding
 import com.firebase.ui.database.FirebaseRecyclerOptions
+import com.google.firebase.database.ChildEventListener
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
+import kotlinx.android.synthetic.main.join_the_game_item.*
 
 
 class WaitingRoomForGuestsFragment : Fragment() {
@@ -41,11 +47,67 @@ class WaitingRoomForGuestsFragment : Fragment() {
         binding.LeaveRoom.setOnClickListener {
             myRef.parent!!.child(GuestFragment.ownerEmail).child(game).child(waiting).child(
                 currentUser).removeValue()
-            Navigation.findNavController(view).navigate(R.id.action_waitingRoomForGuestsFragment_to_guest_fragment)
+
+//            Navigation.findNavController(view).navigate(R.id.action_waitingRoomForGuestsFragment_to_guest_fragment)
+
+
+
+
 
         }
+        // jeśli zostaniemy wyrzuceni
+        myRef.parent!!.child(GuestFragment.ownerEmail).child(game).child(waiting).child(currentUser)
+            .addChildEventListener(object : ChildEventListener {
+                override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
+
+                }
+
+                override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
+                    TODO("Not yet implemented")
+                }
+
+                override fun onChildRemoved(snapshot: DataSnapshot) {
+                    Log.i("hej",snapshot.value.toString())
+                    myRef.parent!!.child(GuestFragment.ownerEmail).child(game).child(waiting).child(currentUser).removeEventListener(this)
+                    Navigation.findNavController(binding.root).navigate(R.id.action_waitingRoomForGuestsFragment_to_guest_fragment)
+                }
+
+                override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {
+                    TODO("Not yet implemented")
+                }
+//                override fun onDataChange(snapshot: DataSnapshot) {
+//                    Log.i("hej",snapshot.value.toString())
+//                    if (snapshot.value!= currentUser){
+//                        Navigation.findNavController(binding.root).navigate(R.id.action_waitingRoomForGuestsFragment_to_guest_fragment)
+//                    }
+//                    myRef.parent!!.child(GuestFragment.ownerEmail).child(game).child(waiting).child(currentUser).child(
+//                        email).removeEventListener(this)
+//                }
+
+                override fun onCancelled(error: DatabaseError) {
+
+                }
+
+            })
+
 
         return view
+    }
+
+    override fun onStart() {
+        super.onStart()
+        adapter.startListening()
+    }
+
+    override fun onStop() {
+        super.onStop()
+
+        adapter.stopListening()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.i("hej","hej")
     }
 
 

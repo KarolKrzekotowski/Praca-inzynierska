@@ -1,10 +1,13 @@
 package com.example.pracainzynierska.Host
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pracainzynierska.*
 import com.example.pracainzynierska.Friends.Friends
@@ -33,6 +36,10 @@ class HostFragment:Fragment() {
         instance = this
         setupRv1()
         setupRv2()
+        myRef.child(game).child(waiting).child(currentUser).child(email).setValue(currentUser)
+        binding.closeRoom.setOnClickListener {
+            quitTheRoom()
+        }
         return view
     }
 
@@ -45,7 +52,6 @@ class HostFragment:Fragment() {
         playersAdapter = PlayersInRoomAdapter(options)
         rv1.adapter = playersAdapter
     }
-
     fun setupRv2(){
         val rv2 = binding.rvPossibleToInvite
         rv2.layoutManager = LinearLayoutManager(requireContext())
@@ -56,6 +62,10 @@ class HostFragment:Fragment() {
         rv2.adapter = readyToInviteAdapter
     }
 
+    fun quitTheRoom(){
+        myRef.child(game).child(waiting).removeValue()
+        Navigation.findNavController(binding.root).navigate(R.id.action_hostfragment_to_mainFragment)
+    }
     override fun onStart() {
         super.onStart()
         playersAdapter.startListening()
@@ -77,6 +87,10 @@ class HostFragment:Fragment() {
         }
         fun KickFromTable(view: View,model: Friends){
             val newModel = model.email.replace(".", " ")
+            if (currentUser.equals(model.email)){
+                Toast.makeText(instance.requireContext(),"Nie można usunąć siebie z pokoju",Toast.LENGTH_SHORT).show()
+                return
+            }
             myRef.child(game).child(waiting).child(newModel).removeValue()
 
         }
