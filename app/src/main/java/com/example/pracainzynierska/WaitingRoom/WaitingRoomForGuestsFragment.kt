@@ -24,10 +24,7 @@ class WaitingRoomForGuestsFragment : Fragment() {
 
     private lateinit var binding: FragmentWaitingRoomForGuestsBinding
     private lateinit var adapter: WaitingRoomAdapter
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
 
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,53 +44,55 @@ class WaitingRoomForGuestsFragment : Fragment() {
         binding.LeaveRoom.setOnClickListener {
             myRef.parent!!.child(GuestFragment.ownerEmail).child(game).child(waiting).child(
                 currentUser).removeValue()
-
 //            Navigation.findNavController(view).navigate(R.id.action_waitingRoomForGuestsFragment_to_guest_fragment)
-
-
-
-
-
         }
         // jeśli zostaniemy wyrzuceni
+        kicklistener()
+        startGameListener()
+
+
+
+        return view
+    }
+    fun kicklistener(){
+
         myRef.parent!!.child(GuestFragment.ownerEmail).child(game).child(waiting).child(currentUser)
             .addChildEventListener(object : ChildEventListener {
                 override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
-
                 }
-
                 override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
-                    TODO("Not yet implemented")
                 }
-
                 override fun onChildRemoved(snapshot: DataSnapshot) {
                     Log.i("hej",snapshot.value.toString())
                     myRef.parent!!.child(GuestFragment.ownerEmail).child(game).child(waiting).child(currentUser).removeEventListener(this)
                     Navigation.findNavController(binding.root).navigate(R.id.action_waitingRoomForGuestsFragment_to_guest_fragment)
-                }
 
+                }
                 override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {
-                    TODO("Not yet implemented")
-                }
-//                override fun onDataChange(snapshot: DataSnapshot) {
-//                    Log.i("hej",snapshot.value.toString())
-//                    if (snapshot.value!= currentUser){
-//                        Navigation.findNavController(binding.root).navigate(R.id.action_waitingRoomForGuestsFragment_to_guest_fragment)
-//                    }
-//                    myRef.parent!!.child(GuestFragment.ownerEmail).child(game).child(waiting).child(currentUser).child(
-//                        email).removeEventListener(this)
-//                }
 
+                }
                 override fun onCancelled(error: DatabaseError) {
 
                 }
 
             })
-
-
-        return view
     }
+    fun startGameListener(){
+        myRef.parent!!.child(GuestFragment.ownerEmail).child(game).child("Playing").addValueEventListener(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.value.toString() == 1.toString()){
+                    myRef.parent!!.child(GuestFragment.ownerEmail).child(game).child("Playing").removeEventListener(this)
+                    Navigation.findNavController(binding.root).navigate(R.id.action_waitingRoomForGuestsFragment_to_game_fragment)
+                }
+            }
 
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+        })
+
+    }
     override fun onStart() {
         super.onStart()
         adapter.startListening()

@@ -13,15 +13,19 @@ import com.example.pracainzynierska.*
 import com.example.pracainzynierska.Friends.Friends
 import com.example.pracainzynierska.Friends.FriendsAdapter
 import com.example.pracainzynierska.Friends.FriendsFragment
+import com.example.pracainzynierska.Guest.GuestFragment
 import com.example.pracainzynierska.databinding.HostFragmentBinding
 import com.firebase.ui.database.FirebaseRecyclerOptions
+import com.google.android.gms.tasks.Tasks
 import com.google.firebase.auth.FirebaseAuth
+import java.util.concurrent.TimeUnit
 
 
 class HostFragment:Fragment() {
     private lateinit var readyToInviteAdapter: ReadyToInviteAdapter
     private lateinit var playersAdapter: PlayersInRoomAdapter
     private lateinit var binding: HostFragmentBinding
+    private val playersList = mutableListOf<Friends>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -34,14 +38,39 @@ class HostFragment:Fragment() {
         binding = HostFragmentBinding.inflate(inflater, container, false)
         val view = binding.root
         instance = this
+        GuestFragment.ownerEmail= currentUser
         setupRv1()
         setupRv2()
         myRef.child(game).child(waiting).child(currentUser).child(email).setValue(currentUser)
         binding.closeRoom.setOnClickListener {
             quitTheRoom()
         }
+        binding.beginTheGame.setOnClickListener {
+
+
+            val table = myRef.parent!!.parent!!.child(liveGames).child(currentUser)
+
+
+            val players = myRef.child(game).child(waiting)
+
+            players.get().addOnSuccessListener {
+                for (friend in it.children){
+                    val guy = friend.child(email).value.toString()
+                    playersList.add(Friends(guy))
+                    }
+                for (friend in playersList){
+                    table.child(friend.email).child(email).setValue(friend.email)
+                }
+                myRef.child(game).child("Playing").setValue(1.toString())
+
+                Navigation.findNavController(view).navigate(R.id.action_host_fragment_to_game_fragment)
+                }
+
+        }
         return view
     }
+
+
 
     fun setupRv1(){
         val rv1 = binding.rvAcceptedGame
