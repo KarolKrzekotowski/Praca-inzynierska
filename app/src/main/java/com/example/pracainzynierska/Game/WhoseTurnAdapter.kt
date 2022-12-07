@@ -31,6 +31,7 @@ class WhoseTurnAdapter: RecyclerView.Adapter<WhoseTurnAdapter.ViewHolder>() {
             holder.itemView.setBackgroundColor(Color.parseColor("#FFFF00"));
         }
         else{
+
             holder.itemView.setBackgroundColor(Color.parseColor("#FFFFFF"));
         }
     }

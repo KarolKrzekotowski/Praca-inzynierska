@@ -6,22 +6,23 @@
 
     <TextView
         android:id="@+id/friendEmail"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="5"
+        android:layout_weight="1"
         android:text="email" />
 
-    <Button
-        android:id="@+id/accept_to_friends"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="Zaakceptuj" />
 
-    <Button
+    <ImageButton
+        android:id="@+id/accept_to_friends"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@mipmap/positive" />
+
+    <ImageButton
         android:id="@+id/Reject"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="Odrzuć" />
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:text="Odrzuć"
+        android:src="@mipmap/negative"/>
+
 </LinearLayout>

@@ -4,18 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/gameConst"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="16dp">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/WhoseTurn"
-        android:layout_width="142dp"
-        android:layout_height="149dp"
+        android:layout_width="wrap_content"
+        android:layout_height="115dp"
 
 
-        app:layout_constraintBottom_toTopOf="@+id/MyCards"
+        android:layout_marginStart="16dp"
 
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.08"
+        android:layout_marginTop="16dp"
+        android:padding="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -49,7 +50,7 @@
         android:text="żądania: brak"
         app:layout_constraintBottom_toTopOf="@+id/MyCards"
         app:layout_constraintEnd_toStartOf="@+id/LastUsed"
-        app:layout_constraintHorizontal_bias="0.28"
+        app:layout_constraintHorizontal_bias="0.29"
         app:layout_constraintStart_toEndOf="@+id/WhoseTurn"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -57,13 +58,10 @@
         android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="42sp"
-        android:layout_marginBottom="8sp"
+        android:layout_marginEnd="16dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/MyCards"
+        android:padding="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.25"
-        app:layout_constraintStart_toEndOf="@+id/LastUsed"
         app:layout_constraintTop_toTopOf="parent">
 
         <Button

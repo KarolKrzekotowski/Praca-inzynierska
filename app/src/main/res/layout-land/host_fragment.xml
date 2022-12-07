@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
 
     android:layout_height="match_parent"
+    android:padding="16dp"
     android:orientation="vertical">
 
 
@@ -11,7 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="6"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="4dp">
 
         <TextView
             android:id="@+id/textView11"
@@ -19,6 +21,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
+            android:paddingTop="4dp"
             android:text="Obecni w pokoju" />
 
         <TextView
@@ -27,6 +30,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
+            android:paddingTop="4dp"
             android:text="możliwi do zaproszenia" />
     </LinearLayout>
 
@@ -34,19 +38,24 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="2"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingStart="16dp"
+        android:paddingTop="4dp"
+        android:paddingEnd="16dp">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvAcceptedGame"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:padding="16dp" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvPossibleToInvite"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:padding="16dp" />
 
     </LinearLayout>
 
@@ -63,6 +72,8 @@
             android:layout_height="match_parent"
             android:layout_alignParentEnd="true"
             android:layout_gravity="center"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
             android:text="rozwiąż pokój" />
 
         <EditText
@@ -80,6 +91,8 @@
             android:id="@+id/beginTheGame"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
             android:text="Rozpocznij Rozgrywkę" />
     </LinearLayout>
 

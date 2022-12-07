@@ -8,13 +8,13 @@
         android:id="@+id/friendEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="5"
-        android:text="email" />
+        android:layout_weight="1"
+        android:text="email"
+        android:textSize="10sp" />
 
     <Button
         android:id="@+id/Delete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:text="Usuń" />
 </LinearLayout>
