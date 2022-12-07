@@ -2,27 +2,35 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/gameConst"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/WhoseTurn"
-        android:layout_width="109sp"
-        android:layout_height="211sp"
-        android:layout_marginBottom="11dp"
+        android:layout_width="142dp"
+        android:layout_height="149dp"
+
+
         app:layout_constraintBottom_toTopOf="@+id/MyCards"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.08"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/MyCards"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.05"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.86" />
 
     <ImageView
         android:id="@+id/LastUsed"
@@ -30,31 +38,81 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/MyCards"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.21"
         app:layout_constraintStart_toEndOf="@+id/WhoseTurn"
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
 
-    <ImageView
-        android:id="@+id/LeftOvers"
+    <TextView
+        android:id="@+id/orders"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="50dp"
+        android:text="żądania: brak"
         app:layout_constraintBottom_toTopOf="@+id/MyCards"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.24"
-        app:layout_constraintStart_toEndOf="@+id/LastUsed"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.98"
-        tools:srcCompat="@tools:sample/avatars" />
-
-    <Button
-        android:id="@+id/takeACard"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Ciągnij"
-        app:layout_constraintBottom_toTopOf="@+id/MyCards"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/LeftOvers"
+        app:layout_constraintEnd_toStartOf="@+id/LastUsed"
+        app:layout_constraintHorizontal_bias="0.28"
+        app:layout_constraintStart_toEndOf="@+id/WhoseTurn"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="42sp"
+        android:layout_marginBottom="8sp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/MyCards"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.25"
+        app:layout_constraintStart_toEndOf="@+id/LastUsed"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/undo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cofnij ruch" />
+
+        <Button
+            android:id="@+id/endMove"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Zakoń ruch" />
+
+        <Button
+            android:id="@+id/takeACard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ciągnij 1 kartę" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1sp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.75"
+        app:layout_constraintStart_toEndOf="@+id/MyCards"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Sortuj:" />
+
+        <Button
+            android:id="@+id/sortColor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="po kolorze" />
+
+        <Button
+            android:id="@+id/sortType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="po symbolu" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

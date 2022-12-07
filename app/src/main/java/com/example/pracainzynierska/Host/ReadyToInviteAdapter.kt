@@ -12,8 +12,9 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
 
 
-class ReadyToInviteAdapter(options: FirebaseRecyclerOptions<Friends>): FirebaseRecyclerAdapter<Friends, ReadyToInviteAdapter.ViewHolder>(options) {
+class ReadyToInviteAdapter:RecyclerView.Adapter<ReadyToInviteAdapter.ViewHolder>() {
     private lateinit var binding: RoomPlayerToInviteItemBinding
+    private  var ReadyToInvitelist  = mutableListOf<Friends>()
 
     inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         var email:TextView = binding.InvitePlayerToTable
@@ -28,12 +29,26 @@ class ReadyToInviteAdapter(options: FirebaseRecyclerOptions<Friends>): FirebaseR
     }
 
 
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.email.text = ReadyToInvitelist[position].email
 
-
-    override fun onBindViewHolder(holder: ViewHolder, position: Int, model: Friends) {
-        holder.email.text = model.email
         holder.invite.setOnClickListener {
-            HostFragment.InviteToGame(it, model)
+            HostFragment.InviteToGame(it, ReadyToInvitelist[position])
         }
+    }
+
+    override fun getItemCount(): Int {
+        return ReadyToInvitelist.size
+    }
+
+    fun setData(friends: MutableList<Friends>){
+        this.ReadyToInvitelist = friends
+
+
+        notifyDataSetChanged()
+    }
+
+    fun getFriend(position: Int): Friends {
+        return ReadyToInvitelist[position]
     }
 }

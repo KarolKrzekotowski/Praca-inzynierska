@@ -4,7 +4,8 @@ plugins {
     id 'com.google.gms.google-services'
     id 'kotlin-kapt'
     id("androidx.navigation.safeargs.kotlin")
-    id 'kotlin-android-extensions'
+    id("kotlin-parcelize")
+
 
 }
 
@@ -30,9 +31,10 @@ android {
     }
     buildFeatures {
         viewBinding true
-        dataBinding true
+
     }
     compileOptions {
+        coreLibraryDesugaringEnabled = true
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
@@ -57,6 +59,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     api "org.jetbrains.kotlinx:kotlinx-coroutines-core:$rootProject.coroutines"
     api "org.jetbrains.kotlinx:kotlinx-coroutines-android:$rootProject.coroutines"
+    coreLibraryDesugaring "com.android.tools:desugar_jdk_libs:1.1.5"
 
 
     var nav_version = "2.5.3"

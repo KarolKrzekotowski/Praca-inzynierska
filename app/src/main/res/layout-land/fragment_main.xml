@@ -11,6 +11,18 @@
         android:layout_height="match_parent"
         android:gravity="center">
 
+        <TextView
+            android:id="@+id/loggeduser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
+
         <Button
             android:id="@+id/new_game"
             android:layout_width="wrap_content"
@@ -73,6 +85,30 @@
             app:layout_constraintTop_toBottomOf="@+id/join_game"
             app:layout_constraintVertical_bias="0.01999998" />
 
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Zaloguj się" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/rules"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Zasady" />
     </TableRow>
 
 

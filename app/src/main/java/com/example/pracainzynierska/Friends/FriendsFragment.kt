@@ -15,7 +15,7 @@ import com.example.pracainzynierska.databinding.FragmentFriendsBinding
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.android.gms.common.internal.FallbackServiceBroker
 import com.google.firebase.auth.FirebaseAuth
-import kotlinx.android.synthetic.main.fragment_friends.*
+
 import kotlinx.coroutines.delay
 
 

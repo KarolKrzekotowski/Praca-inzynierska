@@ -10,16 +10,14 @@ import com.example.pracainzynierska.R
 import com.example.pracainzynierska.databinding.FriendsItemListBinding
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
-import kotlinx.android.synthetic.main.friends_invitation_item.view.*
-import kotlinx.android.synthetic.main.friends_invitation_item.view.friendEmail
-import kotlinx.android.synthetic.main.friends_item_list.view.*
+
 
 class FriendsAdapter(options: FirebaseRecyclerOptions<Friends>): FirebaseRecyclerAdapter<Friends,FriendsAdapter.ViewHolder>(options) {
     private lateinit var binding: FriendsItemListBinding
 
     inner class ViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
-        var email:TextView = itemView.friendEmail
-        val deleteButton:Button=itemView.Delete
+        var email:TextView = binding.friendEmail
+        val deleteButton:Button=binding.Delete
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

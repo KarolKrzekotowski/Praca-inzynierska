@@ -12,4 +12,5 @@ const val friendsList = "FriendsList"
 const val email = "email"
 const val pending = "Pending"
 const val liveGames = "LiveGames"
-const val ownerTable = "Table"
+
+

@@ -7,6 +7,6 @@ import android.media.Image
 data class Cards(
     val colour:String="",
     val type:String = "",
-    val image: Bitmap
+    val image: Int = 0
 
 )

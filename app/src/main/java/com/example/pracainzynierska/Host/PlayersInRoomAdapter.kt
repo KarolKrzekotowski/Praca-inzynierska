@@ -8,14 +8,15 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pracainzynierska.Friends.Friends
+import com.example.pracainzynierska.Game.Player
 import com.example.pracainzynierska.databinding.RoomPlayerItemBinding
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
 
-class PlayersInRoomAdapter(options: FirebaseRecyclerOptions<Friends>): FirebaseRecyclerAdapter<Friends, PlayersInRoomAdapter.ViewHolder>(options) {
+class PlayersInRoomAdapter:RecyclerView.Adapter<PlayersInRoomAdapter.ViewHolder>()  {
     private lateinit var binding: RoomPlayerItemBinding
-
+    private var playersList = mutableListOf<Friends>()
     inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         var email: TextView = binding.PlayerInTable
         var kick: Button = binding.kick
@@ -28,12 +29,18 @@ class PlayersInRoomAdapter(options: FirebaseRecyclerOptions<Friends>): FirebaseR
     }
 
 
-
-
-    override fun onBindViewHolder(holder: ViewHolder, position: Int, model: Friends) {
-        holder.email.text = model.email
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.email.text = playersList[position].email
         holder.kick.setOnClickListener {
-            HostFragment.KickFromTable(it, model)
+            HostFragment.KickFromTable(it, playersList[position])
         }
+    }
+
+    override fun getItemCount(): Int {
+        return playersList.size
+    }
+    fun setData(friends: MutableList<Friends>){
+        this.playersList = friends
+        notifyDataSetChanged()
     }
 }

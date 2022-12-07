@@ -2,4 +2,13 @@
     <string name="app_name">Praca inzynierska</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="Zasady">Kartami funkcyjnymi są: 2, 3, 4, jopek, król, as.\nPozostałe karty są kartami zwykłymi.\n
+    Karty można kłaść na środek gdy zgadza się ich typ lub kolor. Jeżeli położymy jakąś kartę, to kolejna, którą chcemy położyć musi być tego samego typu\n
+    Ruch można cofać, przed zakończeniem tury. Zawsze można pociągnąć jedną kartę, chyba że stoimy.\n
+        2, 3, król hearts, król spades to karty bitewne. 2 - 2 karty do ciągnięcia, 3 - 3 karty, król - 5 kart. król spades atakuje do tyłu, pozostałe do przodu. Na kartę bitewną można odpowiedzieć inną kartą bitewną jeżeli zgadza się typ lub kolor.\n
+        4 - kolejna osoba stoi jedną kolejkę. Ilość rund do odczekania zależy od liczby 4.\n
+        jopek - żądanie wybranego typu zwykłej karty. Żądanie obowiązuje do pierwszego wypełnienia go lub użycia innego jopka.\n
+        as - zmiana koloru na wybrany kolor.
+        W pokoju mogą być maksymalnie 4 osoby.
+    </string>
 </resources>

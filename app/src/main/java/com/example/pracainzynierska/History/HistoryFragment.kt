@@ -44,6 +44,7 @@ class HistoryFragment: Fragment() {
             }
         })
 
+
         return view
     }
 }

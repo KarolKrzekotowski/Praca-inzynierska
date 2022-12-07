@@ -29,7 +29,7 @@
             android:text="Zaproszenia do Znajomych" />
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/Order"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"

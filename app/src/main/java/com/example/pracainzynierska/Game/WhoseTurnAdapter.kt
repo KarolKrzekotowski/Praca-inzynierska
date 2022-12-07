@@ -4,54 +4,47 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.pracainzynierska.Friends.Friends
+import com.example.pracainzynierska.databinding.QueueAdapterItemBinding
 
-import com.example.pracainzynierska.databinding.WhosePlayingItemBinding
-import kotlinx.android.synthetic.main.whose_playing_item.view.*
-
-class WhoseTurnAdapter():RecyclerView.Adapter<WhoseTurnAdapter.ViewHolder>() {
-    private lateinit var binding:WhosePlayingItemBinding
-    private var playersList = emptyList<Player>()
-
+class WhoseTurnAdapter: RecyclerView.Adapter<WhoseTurnAdapter.ViewHolder>() {
+    private lateinit var binding: QueueAdapterItemBinding
+    private var players = mutableListOf<Player>()
+    var theName = ""
     inner class ViewHolder(itemView: View):RecyclerView.ViewHolder(itemView) {
-        var email:TextView = binding.whoseTurnEmail
-
+        var email :TextView = binding.Order
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        binding = WhosePlayingItemBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+        binding = QueueAdapterItemBinding.inflate(LayoutInflater.from(parent.context),parent,false)
         return ViewHolder(binding.root)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val player = playersList[position]
-        val email = holder.email
-        email.text = player.email
-        if (player.myTurn == true){
-            binding.root.setBackgroundColor(Color.parseColor("#ffff00")  )
-        }
-    }
-    fun changeBackground(position: Int){
-        if (playersList[position].myTurn == true){
+        val person = players[position]
+        holder.email.text = person.email
 
-            binding.root.whoseTurnEmail.setTextColor(Color.YELLOW)
+        if(person.email == theName ){
+            holder.itemView.setBackgroundColor(Color.parseColor("#FFFF00"));
         }
         else{
-            binding.root.whoseTurnEmail.setTextColor(Color.BLACK)
+            holder.itemView.setBackgroundColor(Color.parseColor("#FFFFFF"));
         }
-
     }
 
     override fun getItemCount(): Int {
-        return playersList.size
+        return players.size
     }
 
-    fun setData(data: List<Player>){
-        this.playersList=data
+    fun setData(friends:MutableList<Player>){
+        this.players = friends
         notifyDataSetChanged()
     }
-    fun getData(position: Int):Player{
-        return playersList[position]
+    fun changeColor(name:String){
+        this.theName = name
+        notifyDataSetChanged()
     }
 }

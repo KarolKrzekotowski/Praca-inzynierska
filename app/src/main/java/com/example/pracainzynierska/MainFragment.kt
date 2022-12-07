@@ -8,12 +8,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.databinding.DataBindingUtil
+
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.example.pracainzynierska.Data.HistoryData
 import com.example.pracainzynierska.Data.HistoryDataViewModel
 import com.example.pracainzynierska.Data.HistoryDataViewModelFactory
+import com.example.pracainzynierska.Game.GameFragment
 import com.example.pracainzynierska.databinding.FragmentMainBinding
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
@@ -38,10 +39,6 @@ class MainFragment : Fragment() {
         this.onSignInResult(res)
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
     private fun onSignInResult(result: FirebaseAuthUIAuthenticationResult){
         val response = result.idpResponse
         Log.i("kod", result.toString())
@@ -56,9 +53,22 @@ class MainFragment : Fragment() {
 
             auth = FirebaseAuth.getInstance()
             Toast.makeText(requireContext(), "Witaj " + user.displayName, Toast.LENGTH_SHORT).show()
+            binding.loggeduser.text = "Zalogowano jako: " + user.displayName
+            binding.joinGame.isEnabled = true
+            binding.newGame.isEnabled = true
+            binding.Friends.isEnabled = true
+            binding.historyOfGames.isEnabled = true
+
 
         } else {
             Toast.makeText(requireContext(), "Logowanie nie powiodło się", Toast.LENGTH_SHORT).show()
+            binding.joinGame.isEnabled = false
+            binding.newGame.isEnabled = false
+            binding.Friends.isEnabled = false
+            binding.historyOfGames.isEnabled = false
+
+
+
         }
     }
 
@@ -67,6 +77,7 @@ class MainFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         // Inflate the layout
         // for this fragment
         binding = FragmentMainBinding.inflate(inflater,container,false)
@@ -87,7 +98,18 @@ class MainFragment : Fragment() {
                 .navigate(R.id.action_mainFragment_to_guest_fragment)
 
         }
+        binding.rules.setOnClickListener {
+            Navigation.findNavController(view).navigate(R.id.action_mainFragment_to_rulesFragment)
+        }
         val providers = arrayListOf(AuthUI.IdpConfig.GoogleBuilder().build())
+        Log.i("siemano",providers.toString())
+        binding.login.setOnClickListener {
+            val signInIntent = AuthUI.getInstance()
+                .createSignInIntentBuilder()
+                .setAvailableProviders(providers)
+                .build()
+            signInLauncher.launch(signInIntent)
+        }
         if (!isUserInitialised()) {
             val signInIntent = AuthUI.getInstance()
                 .createSignInIntentBuilder()
@@ -96,13 +118,13 @@ class MainFragment : Fragment() {
             signInLauncher.launch(signInIntent)
 
         }
-        val historyDataViewModelFactory = HistoryDataViewModelFactory(activity?.application!!)
-        val historyDataViewModel = ViewModelProvider(this, historyDataViewModelFactory).get(
-            HistoryDataViewModel::class.java)
+
 
         return view
 
     }
+
+
 
     companion object {
         lateinit var userRef: DatabaseReference

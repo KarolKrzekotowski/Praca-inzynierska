@@ -17,10 +17,7 @@ import com.firebase.ui.database.FirebaseRecyclerOptions
 class GuestFragment:Fragment() {
     private lateinit var binding: GuestFragmentBinding
     private lateinit var adapter: InvitationToGameAdapter
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
 
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,7 +43,7 @@ class GuestFragment:Fragment() {
         rv2.adapter=adapter
 
 
-
+        myRef.child(game).removeValue()
         return view
     }
 

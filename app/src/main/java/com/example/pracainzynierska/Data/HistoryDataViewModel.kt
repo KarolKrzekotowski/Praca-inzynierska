@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
 class HistoryDataViewModel(application: Application): AndroidViewModel(application){
-lateinit var allGamesHistory: LiveData<List<HistoryData>>
+var allGamesHistory: LiveData<List<HistoryData>>
 private val HistoryDataRepository:HistoryDataRepository
 
     init {
@@ -25,15 +25,7 @@ private val HistoryDataRepository:HistoryDataRepository
     }
 
 }
-//class HistoryDataViewModelFactory(private val repository: HistoryDataRepository) : ViewModelProvider.Factory {
-//    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-//        if (modelClass.isAssignableFrom(HistoryDataViewModel::class.java)) {
-//            @Suppress("UNCHECKED_CAST")
-//            return HistoryDataViewModel(repository) as T
-//        }
-//        throw IllegalArgumentException("Unknown ViewModel class")
-//    }
-//}
+
 class HistoryDataViewModelFactory(private val mApplication: Application) :
     ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
