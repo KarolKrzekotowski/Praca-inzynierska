@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "549872088891",
+    "firebase_url": "https://praca-inzynierska-a6652-default-rtdb.europe-west1.firebasedatabase.app",
     "project_id": "praca-inzynierska-a6652",
     "storage_bucket": "praca-inzynierska-a6652.appspot.com"
   },
@@ -13,6 +14,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "549872088891-7hst6jqsrgu6nqmbg1rpcloplk8c2sc4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.pracainzynierska",
+            "certificate_hash": "a65e17cd1c0aaf67c5d04532dee2789af6b0ad57"
+          }
+        },
         {
           "client_id": "549872088891-96gijre5hi68aq0rfvthuf11k5q78hr4.apps.googleusercontent.com",
           "client_type": 3

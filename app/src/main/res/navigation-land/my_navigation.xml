@@ -24,7 +24,9 @@
         tools:layout="@layout/guest_fragment">
         <action
             android:id="@+id/action_guest_fragment_to_mainFragment"
-            app:destination="@id/mainFragment" />
+            app:destination="@id/mainFragment"
+            app:popUpToInclusive="true"
+            app:popUpTo="@id/mainFragment"/>
         <action
             android:id="@+id/action_guest_fragment_to_waitingRoomForGuestsFragment"
             app:destination="@id/waitingRoomForGuestsFragment" />
@@ -33,7 +35,14 @@
         android:id="@+id/history_fragment"
         android:name="com.example.pracainzynierska.History.HistoryFragment"
         android:label="History_fragment"
-        tools:layout="@layout/history_fragment"/>
+        tools:layout="@layout/history_fragment">
+        <action
+            android:id="@+id/action_history_fragment_to_mainFragment"
+            app:destination="@id/mainFragment"
+            app:popUpTo="@id/mainFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+
     <fragment
         android:id="@+id/hostfragment"
         android:name="com.example.pracainzynierska.Host.HostFragment"
@@ -44,7 +53,9 @@
             app:destination="@id/game_fragment" />
         <action
             android:id="@+id/action_hostfragment_to_mainFragment"
-            app:destination="@id/mainFragment" />
+            app:destination="@id/mainFragment"
+            app:popUpTo="@id/mainFragment"
+            app:popUpToInclusive="true"/>
     </fragment>
     <fragment
         android:id="@+id/mainFragment"
@@ -71,7 +82,13 @@
         android:id="@+id/friendsFragment"
         android:name="com.example.pracainzynierska.Friends.FriendsFragment"
         android:label="FriendsFragment"
-        tools:layout="@layout/fragment_friends"/>
+        tools:layout="@layout/fragment_friends">
+        <action
+            android:id="@+id/action_friendsFragment_to_mainFragment"
+            app:destination="@id/mainFragment"
+            app:popUpTo="@id/mainFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
     <fragment
         android:id="@+id/waitingRoomForGuestsFragment"
         android:name="com.example.pracainzynierska.WaitingRoom.WaitingRoomForGuestsFragment"
@@ -82,7 +99,9 @@
             app:destination="@id/game_fragment" />
         <action
             android:id="@+id/action_waitingRoomForGuestsFragment_to_guest_fragment"
-            app:destination="@id/guest_fragment" />
+            app:destination="@id/guest_fragment"
+            app:popUpTo="@id/guest_fragment"
+            app:popUpToInclusive="true"/>
     </fragment>
     <fragment
         android:id="@+id/rulesFragment"

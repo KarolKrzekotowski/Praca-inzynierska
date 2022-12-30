@@ -26,7 +26,11 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 
-
+/**
+ *  Wyświetlany jest tutaj widok głównego menu
+ *
+ *
+ */
 class MainFragment : Fragment() {
 
     private lateinit var binding: FragmentMainBinding
@@ -39,19 +43,26 @@ class MainFragment : Fragment() {
         this.onSignInResult(res)
     }
 
+    /**
+     * funkcja ustawia referencje do bazydanych firebase,
+     * odblokowywuje przyciski w razie powodzenia
+     *
+     * @param result informacje o użytkowniku i logowaniu
+     */
     private fun onSignInResult(result: FirebaseAuthUIAuthenticationResult){
-        val response = result.idpResponse
-        Log.i("kod", result.toString())
-        if (result.resultCode == RESULT_OK) {
-            // Successfully signed in
-            user = FirebaseAuth.getInstance().currentUser!!
 
+        if (result.resultCode == RESULT_OK) {
+
+            // Zalogowano popawnie
+            //nazawa użytkownika
+            user = FirebaseAuth.getInstance().currentUser!!
+            // ustawianie referencji do bazy danych  Firebase
             val database = Firebase.database("https://praca-inzynierska-a6652-default-rtdb.europe-west1.firebasedatabase.app/")
             userRef = database.getReference("users/" + (Firebase.auth.currentUser!!.email?.replace('.', ' ') ?: 0))
-            userRef.child("friends")
             userRef.child("messages").child("0").setValue("0")
-
             auth = FirebaseAuth.getInstance()
+
+            // Odblokowanie przycisków i wyświetlenie jako kto użytkownik się zalogował
             Toast.makeText(requireContext(), "Witaj " + user.displayName, Toast.LENGTH_SHORT).show()
             binding.loggeduser.text = "Zalogowano jako: " + user.displayName
             binding.joinGame.isEnabled = true
@@ -61,7 +72,10 @@ class MainFragment : Fragment() {
 
 
         } else {
+            // Niepowodzenie logowania
+            // komunikat o niepowodzeniu
             Toast.makeText(requireContext(), "Logowanie nie powiodło się", Toast.LENGTH_SHORT).show()
+            // blokada przycisków
             binding.joinGame.isEnabled = false
             binding.newGame.isEnabled = false
             binding.Friends.isEnabled = false
@@ -72,37 +86,51 @@ class MainFragment : Fragment() {
         }
     }
 
+    /**
+     * funkcja tworząca widok głównego menu
 
+     *
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     * @see Fragment.onCreateView
+     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        // Inflate the layout
-        // for this fragment
+        // bindowanie widoku
         binding = FragmentMainBinding.inflate(inflater,container,false)
         val view = binding.root
+        // ustawianie akcji przejścia dla każdego przycisku
+        // przycisk znajomi
         binding.Friends.setOnClickListener {
             Navigation.findNavController(view).navigate(R.id.action_mainFragment_to_friendsFragment)
         }
+        //przycisk historia gier
         binding.historyOfGames.setOnClickListener {
             Navigation.findNavController(view)
                 .navigate(R.id.action_mainFragment_to_history_fragment)
         }
+        // przycisk stwórz grę
         binding.newGame.setOnClickListener {
             Navigation.findNavController(view)
                 .navigate(R.id.action_mainFragment_to_host_fragment)
         }
+        //przycisk dołącz do gry
         binding.joinGame.setOnClickListener {
             Navigation.findNavController(view)
                 .navigate(R.id.action_mainFragment_to_guest_fragment)
 
         }
+        // przycisk zasady
         binding.rules.setOnClickListener {
             Navigation.findNavController(view).navigate(R.id.action_mainFragment_to_rulesFragment)
         }
         val providers = arrayListOf(AuthUI.IdpConfig.GoogleBuilder().build())
-        Log.i("siemano",providers.toString())
+        //przycisk logowania
         binding.login.setOnClickListener {
             val signInIntent = AuthUI.getInstance()
                 .createSignInIntentBuilder()
@@ -110,6 +138,7 @@ class MainFragment : Fragment() {
                 .build()
             signInLauncher.launch(signInIntent)
         }
+        // automatyczne logowanie
         if (!isUserInitialised()) {
             val signInIntent = AuthUI.getInstance()
                 .createSignInIntentBuilder()
@@ -125,15 +154,24 @@ class MainFragment : Fragment() {
     }
 
 
-
     companion object {
+        // referencja użytkownika w bazie Firebase
         lateinit var userRef: DatabaseReference
+
+        /**
+         * funkcja informuje, czy użytkownik jest zalogowany
+         *
+         * @return true lub false
+         */
         fun isUserInitialised() = ::userRef.isInitialized
-
-
-        public fun getMyRef(): DatabaseReference
+        // zwraca referencje użytkownika w Firebase
+        /**
+         * funkcja zwracająca referencje użytkownika w firebase
+         *
+         * @return referencja użytkownika w firebase
+         */
+        fun getMyRef(): DatabaseReference
         {
-
             return userRef
         }
     }

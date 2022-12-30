@@ -1,14 +1,17 @@
+
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'com.google.gms.google-services'
     id 'kotlin-kapt'
+//    id 'org.jetbrains.dokka'
     id("androidx.navigation.safeargs.kotlin")
     id("kotlin-parcelize")
 
 
-}
 
+}
+apply plugin: 'org.jetbrains.dokka'
 android {
     namespace 'com.example.pracainzynierska'
     compileSdk 32
@@ -42,6 +45,18 @@ android {
         jvmTarget = '1.8'
     }
 }
+
+tasks.dokkaHtml.configure {
+    outputDirectory.set(file("../documentation/html"))
+}
+dokkaHtml.configure {
+    dokkaSourceSets {
+        named("main") {
+            skipDeprecated.set(true)
+        }
+    }
+}
+
 
 dependencies {
 

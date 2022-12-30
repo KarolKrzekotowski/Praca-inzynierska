@@ -11,7 +11,16 @@ import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.ZoneId
 import java.util.Date
-
+// wygląd tabelki w wewnętrznej bazie danych
+/**
+ * data klasa rozgrywki
+ * wygląd tabelki "historia" w bazie danych
+ *
+ * @property id id
+ * @property position miejsce
+ * @property date data rozgrywki
+ * @property NumberOfPlayers liczba graczy
+ */
 @Entity(tableName = "historia")
 @Parcelize
 data class HistoryData (

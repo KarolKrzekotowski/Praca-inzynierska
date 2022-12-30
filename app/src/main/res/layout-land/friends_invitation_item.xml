@@ -12,17 +12,18 @@
         android:text="email" />
 
 
-    <ImageButton
+
+    <Button
         android:id="@+id/accept_to_friends"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:src="@mipmap/positive" />
+        android:text="+++" />
 
-    <ImageButton
+    <Button
         android:id="@+id/Reject"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:text="Odrzuć"
-        android:src="@mipmap/negative"/>
+        android:text="---"
+        />
 
 </LinearLayout>

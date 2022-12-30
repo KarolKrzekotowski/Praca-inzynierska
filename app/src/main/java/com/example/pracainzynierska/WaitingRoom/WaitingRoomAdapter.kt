@@ -14,9 +14,17 @@ import com.example.pracainzynierska.databinding.RoomWaitingItemBinding
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
 
+/**
+ * Adapter RecyclerView poczekalni dla gości
+ *
+ * @param options zapytanie do Firebase o dane do wyświetlenia w RecyclerView
+ */
 class WaitingRoomAdapter(options: FirebaseRecyclerOptions<Friends>) : FirebaseRecyclerAdapter<Friends, WaitingRoomAdapter.ViewHolder>(options) {
     private lateinit var itemBinding: RoomWaitingItemBinding
 
+    /**
+     * @see RecyclerView.Adapter.onCreateViewHolder
+     */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WaitingRoomAdapter.ViewHolder {
         itemBinding = RoomWaitingItemBinding.inflate(
             LayoutInflater.from(parent.context),parent,false
@@ -24,11 +32,21 @@ class WaitingRoomAdapter(options: FirebaseRecyclerOptions<Friends>) : FirebaseRe
         return ViewHolder(itemBinding.root)
     }
 
+    /**
+     *
+     * @param itemView email do dodania do ViewHolder
+     */
     inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         var email: TextView = itemBinding.emailOfOtherPlayers
 
     }
 
+    /**
+     * Wyświetla email osób w poczekalni na określonych pozycjach
+     *
+     * @see RecyclerView.Adapter.onBindViewHolder
+     *
+     */
     override fun onBindViewHolder(holder: ViewHolder, position: Int, model: Friends) {
         holder.email.text = model.email
 

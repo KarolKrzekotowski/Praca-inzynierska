@@ -10,22 +10,39 @@ class HistoryDataViewModel(application: Application): AndroidViewModel(applicati
 var allGamesHistory: LiveData<List<HistoryData>>
 private val HistoryDataRepository:HistoryDataRepository
 
+    /**
+     * inicjalizacja bazy danych
+     */
     init {
+        // łączenie z bazą danych
         val appDBDao = AppDatabase.getDatabase(
             application
         ).appDBDao()
-
+        // instacja repozytorium
         HistoryDataRepository = HistoryDataRepository(appDBDao)
-
+        // LiveData umożliwia obserwowanie obiektu
+        // lista zawierająca historie rozgrywek
         allGamesHistory = HistoryDataRepository.allGames
-        //Log.e("12345676890", dayRepository.daysWithActivities.value.toString())
+
     }
+    // funkcja dodająca daną rozgrywkę do bazy danych
+    /**
+     * Funkcja dodaje rozgrywkę do wewnętrznej bazy danych
+     *
+     * @param historyData instancja, która ma zostać dodana do bazy danych
+     * @return
+     */
     fun  insert(historyData: HistoryData) = viewModelScope.launch(Dispatchers.IO) {
         HistoryDataRepository.insert(historyData)
     }
 
 }
-
+// fabryka pozwalająca utworzyć viewModel
+/**
+ * Fabryka pozwalająca utworzyć ViewModel
+ *
+ * @property mApplication kontekst
+ */
 class HistoryDataViewModelFactory(private val mApplication: Application) :
     ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
